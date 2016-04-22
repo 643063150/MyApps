@@ -79,19 +79,19 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         switch (mVP.getCurrentItem()){
-            case 0:
+            case VIEW_FIRST:
                 getMenuInflater().inflate(R.menu.search_menu,menu);
                 menu.findItem(R.id.share_bar).setVisible(false);
                 menu.findItem(R.id.search_bar).setVisible(true);
                 break;
-            case 1:
+            case VIEW_SECOND:
                 getMenuInflater().inflate(R.menu.search_menu,menu);
                 menu.findItem(R.id.share_bar).setVisible(true);
                 menu.findItem(R.id.search_bar).setVisible(false);
                 break;
-            case 2:
+            case VIEW_THIRD:
                 break;
-            case 3:
+            case VIEW_FOURTH:
                 break;
         }
         return super.onCreateOptionsMenu(menu);
