@@ -27,4 +27,5 @@ dependencies {
     compile 'com.alibaba:fastjson:1.2.9'
     compile 'com.zhy:okhttputils:2.3.9'
     compile files('libs/universal-image-loader-1.9.5.jar')
+    compile 'com.bigkoo:convenientbanner:2.0.5'
 }
