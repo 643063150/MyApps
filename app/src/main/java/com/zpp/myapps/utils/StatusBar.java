@@ -22,7 +22,7 @@ public class StatusBar {
             win.setAttributes(winParams);
             SystemBarTintManager tintManager = new SystemBarTintManager(context);
             tintManager.setStatusBarTintEnabled(true);
-            tintManager.setStatusBarTintResource(R.color.greenyellow);
+            tintManager.setStatusBarTintResource(R.color.black);
         }
     }
 }

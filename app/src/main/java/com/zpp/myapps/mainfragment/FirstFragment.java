@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -13,9 +14,12 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.zpp.myapps.Adapter.NesAdapter;
 import com.zpp.myapps.Adapter.NetworkImageHolderView;
 import com.zpp.myapps.JsonMordel.Bander;
+import com.zpp.myapps.JsonMordel.NesList;
 import com.zpp.myapps.R;
+import com.zpp.myapps.utils.Loadmore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +32,16 @@ import okhttp3.Call;
 public class FirstFragment extends Fragment {
     ConvenientBanner fristbannerbanner;
     private List<String> networkImages;
-    String url, urlstr;
+    String url,newsurl, urlstr;
     View view;
     Bander bander;
-//    List<Bander.ListBean> beanList = new ArrayList<>();
-
+    View headview;
+    ListView list;
+    int pageIndex=1;
+    NesAdapter nesAdapter;
+    NesList nesList;
+    List<NesList.ListBean> beanList = new ArrayList<>();
+    Loadmore loadmore;
     public static FirstFragment instance() {
         FirstFragment view = new FirstFragment();
         return view;
@@ -43,13 +52,29 @@ public class FirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.homefragment, null);
         url = "http://appapi.rexian.cn:8080/HKCityApi/news/adsGroup?areaID=1";
+        newsurl="http://appapi01.rexian.cn/HKCityApi/news/newsFocusList?areaID=1&pageSize=10&pageIndex=" + pageIndex;
         intview();
+        setList();
         getJsonString();
+        getNesList();
         return view;
     }
 
     private void intview() {
-        fristbannerbanner = (ConvenientBanner) view.findViewById(R.id.fristbannerbanner);
+        loadmore=new Loadmore();
+        headview=LayoutInflater.from(getActivity()).inflate(R.layout.headbanner,null);
+        fristbannerbanner = (ConvenientBanner) headview.findViewById(R.id.fristbannerbanner);
+        list=(ListView)view.findViewById(R.id.list);
+        list.addHeaderView(headview);
+        loadmore.loadmore(list);
+        loadmore.setMyPopwindowswListener(new Loadmore.LoadmoreList() {
+            @Override
+            public void loadmore() {
+                pageIndex++;
+                newsurl="http://appapi01.rexian.cn/HKCityApi/news/newsFocusList?areaID=1&pageSize=10&pageIndex=" + pageIndex;
+                getNesList();
+            }
+        });
     }
 
     private void getJsonString() {
@@ -76,5 +101,26 @@ public class FirstFragment extends Fragment {
                 }
             }
         });
+    }
+    private void getNesList(){
+        OkHttpUtils.get().url(newsurl).build().execute(new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e) {
+                Toast.makeText(getActivity(), "网络异常", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onResponse(String response) {
+                nesList = JSON.parseObject(response, NesList.class);
+                if (nesList.getStatus() == 0) {
+                    beanList.addAll(nesList.getList());
+                    nesAdapter.notifyDataSetChanged();
+                }
+            }
+        });
+    }
+    private void setList(){
+        nesAdapter=new NesAdapter(beanList,getActivity());
+        list.setAdapter(nesAdapter);
     }
 }
