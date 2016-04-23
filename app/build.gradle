@@ -18,6 +18,11 @@ android {
         }
     }
 }
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -28,4 +33,5 @@ dependencies {
     compile 'com.zhy:okhttputils:2.3.9'
     compile files('libs/universal-image-loader-1.9.5.jar')
     compile 'com.bigkoo:convenientbanner:2.0.5'
+    compile 'com.github.chrisbanes:PhotoView:1.2.6'
 }
