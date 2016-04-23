@@ -1,11 +1,13 @@
 package com.zpp.myapps.mainfragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,6 +21,7 @@ import com.zpp.myapps.Adapter.NetworkImageHolderView;
 import com.zpp.myapps.JsonMordel.Bander;
 import com.zpp.myapps.JsonMordel.NesList;
 import com.zpp.myapps.R;
+import com.zpp.myapps.ativity.PhotoLookView;
 import com.zpp.myapps.utils.Loadmore;
 
 import java.util.ArrayList;
@@ -42,6 +45,7 @@ public class FirstFragment extends Fragment {
     NesList nesList;
     List<NesList.ListBean> beanList = new ArrayList<>();
     Loadmore loadmore;
+    ArrayList<String> parray;
     public static FirstFragment instance() {
         FirstFragment view = new FirstFragment();
         return view;
@@ -73,6 +77,20 @@ public class FirstFragment extends Fragment {
                 pageIndex++;
                 newsurl="http://appapi01.rexian.cn/HKCityApi/news/newsFocusList?areaID=1&pageSize=10&pageIndex=" + pageIndex;
                 getNesList();
+            }
+        });
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                parray=new ArrayList<String>();
+                for(int i=0;i<nesList.getList().size();i++){
+                    parray.add(nesList.getList().get(i).getPicId());
+                }
+                PhotoLookView.parray=parray;
+                Intent intent=new Intent();
+                intent.setClass(getActivity(),PhotoLookView.class);
+                intent.putExtra("position",2);
+                getActivity().startActivity(intent);
             }
         });
     }

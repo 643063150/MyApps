@@ -57,6 +57,9 @@
         <activity
             android:name=".ativity.MyTestActivity"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ativity.PhotoLookView"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
