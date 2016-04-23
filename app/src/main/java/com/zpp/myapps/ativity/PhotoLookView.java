@@ -28,12 +28,10 @@ public class PhotoLookView extends AppCompatActivity {
     TextView title;
     public static ArrayList<String> parray=new ArrayList<String>();
     int position;
-    private String s;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StatusBar.StatusBar(this);
-        System.out.println(s.equals("any string"));
         setContentView(R.layout.photolookview);
         position=getIntent().getIntExtra("position",0);
         intview();
