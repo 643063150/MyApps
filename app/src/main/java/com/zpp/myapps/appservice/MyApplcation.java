@@ -6,8 +6,11 @@ import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.utils.StorageUtils;
+import com.zpp.myapps.ativity.ErrorActivity;
 
 import java.io.File;
+
+import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 
 /**
  * Created by admins on 2016/4/21.
@@ -16,6 +19,9 @@ public class MyApplcation extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        //程序异常捕捉
+        CustomActivityOnCrash.setErrorActivityClass(ErrorActivity.class);
+        CustomActivityOnCrash.install(this);
         //初始化imgload
         File diskCache = StorageUtils.getOwnCacheDirectory(this.getApplicationContext(),
                 "Myapps/Cache");

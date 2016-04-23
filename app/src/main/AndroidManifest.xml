@@ -60,6 +60,9 @@
         <activity
             android:name=".ativity.PhotoLookView"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ativity.ErrorActivity"
+            android:process=":error_activity" />
     </application>
 
 </manifest>
