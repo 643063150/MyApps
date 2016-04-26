@@ -12,11 +12,12 @@
 
 5.对图片的操作 为photoview 开源地址为https://github.com/chrisbanes/PhotoView 可以对图片进行双击放大 点击退出等操作
 
-6.app崩溃不住 开源库为：https://github.com/Ereza/CustomActivityOnCrash 可以很轻松的定制app崩溃时的页面 也可以用于捕捉崩溃时的log日志
+6.app崩溃捕捉 开源库为：https://github.com/Ereza/CustomActivityOnCrash 可以很轻松的定制app崩溃时的页面 也可以用于捕捉崩溃时的log日志
+
 
 7.json解析 fastjson  一个很常见的json解析jar
 
-8. 头部广告banner 开源库为：https://github.com/saiwu-bigkoo/Android-ConvenientBanner 可以循环滑动 定时滑动并定制小圆点，与viewpag套用时
+8.头部广告banner 开源库为：https://github.com/saiwu-bigkoo/Android-ConvenientBanner 可以循环滑动 定时滑动并定制小圆点，与viewpag套用时
 没有冲突并可顶顶各种滑动动画
 
 9.网络请求 经过封装的okhttp  开源地址为：https://github.com/hongyangAndroid/okhttp-utils 支持各种网络访问方式 大文件上传 多文件上传等，是对
