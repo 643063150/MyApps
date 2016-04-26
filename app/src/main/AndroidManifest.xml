@@ -63,6 +63,10 @@
         <activity
             android:name=".ativity.ErrorActivity"
             android:process=":error_activity" />
+        <activity
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity" />
     </application>
 
 </manifest>
