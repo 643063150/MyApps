@@ -39,4 +39,5 @@ dependencies {
     compile 'in.srain.cube:grid-view-with-header-footer:1.0.12'
     compile 'com.android.support:cardview-v7:23.3.0'
     compile project(':multi-image-selector')
+    compile 'com.bigkoo:pickerview:2.0.8'
 }
