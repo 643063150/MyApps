@@ -2,12 +2,12 @@ package com.zpp.myapps.mainfragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.bigkoo.convenientbanner.ConvenientBanner;
@@ -90,7 +90,8 @@ public class SecondFragment extends Fragment {
         OkHttpUtils.get().url(url).build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e) {
-                Toast.makeText(getActivity(), "网络异常", Toast.LENGTH_SHORT).show();
+                Snackbar.make(view, R.string.interror, Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
             }
 
             @Override
@@ -115,7 +116,8 @@ public class SecondFragment extends Fragment {
         OkHttpUtils.get().url(newsurl).build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e) {
-                Toast.makeText(getActivity(), "网络异常", Toast.LENGTH_SHORT).show();
+                Snackbar.make(view, R.string.interror, Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
                 swipeRefreshLayout.setRefreshing(false);
             }
 

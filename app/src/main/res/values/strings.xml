@@ -12,4 +12,5 @@
     <string name="enable">是</string>
     <string name="disable">否</string>
     <string name="go_select">图片选择</string>
+    <string name="interror">网络异常</string>
 </resources>
